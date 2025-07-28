@@ -11,7 +11,8 @@ class App extends Component {
 
     // 'this' refers to the current App component object.
     this.state = {
-      name: "Abbas",
+      name: { firstName: "Abbas", lastName: "Ghaith" },
+      company: "ZTM",
     };
   }
 
@@ -21,10 +22,16 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>Hi {this.state.name}</p>
+          <p>
+            Hi {this.state.name.firstName} {this.state.name.lastName}, I'm
+            student at {this.state.company}
+          </p>
           <button
             onClick={() => {
-              this.setState({ name: "Ahmad" });
+              this.setState({
+                name: { firstName: "Ahmad", lastName: "Matar" },
+              });
+              console.log(this.state);
             }}
           >
             Change Name
