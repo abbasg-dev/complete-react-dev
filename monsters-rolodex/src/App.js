@@ -5,6 +5,7 @@ import "./App.css";
 
 // App is the child class (or subclass).
 class App extends Component {
+  // a special method which creates an object and initializes its properties
   constructor() {
     super(); // calls the constructor in the base/superclass (parent) "Component"
 
@@ -14,13 +15,20 @@ class App extends Component {
     };
   }
 
+  // a special method that returns the UI (JSX) to display.
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Hi {this.state.name}</p>
-          <button>Change Name</button>
+          <button
+            onClick={() => {
+              this.setState({ name: "Ahmad" });
+            }}
+          >
+            Change Name
+          </button>
         </header>
       </div>
     );
