@@ -11,25 +11,23 @@ class App extends Component {
 
     // 'this' refers to the current App component object.
     this.state = {
-      monsters: [
-        {
-          name: "Sara",
-          id: "12g312gi1",
-        },
-        {
-          name: "Ahmad",
-          id: "42342uh23",
-        },
-        {
-          name: "Fadi",
-          id: "4564j4h6h",
-        },
-        {
-          name: "Andrei",
-          id: "12j3i4i34",
-        },
-      ],
+      monsters: [],
     };
+  }
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) =>
+        this.setState(
+          () => {
+            return { monsters: users };
+          },
+          () => {
+            console.log(this.state);
+          }
+        )
+      );
   }
 
   // a special method that returns the UI (JSX) to display.
