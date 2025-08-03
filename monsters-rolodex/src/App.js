@@ -11,8 +11,20 @@ class App extends Component {
 
     // 'this' refers to the current App component object.
     this.state = {
-      name: { firstName: "Abbas", lastName: "Ghaith" },
-      company: "ZTM",
+      monsters: [
+        {
+          name: "Sara",
+        },
+        {
+          name: "Ahmad",
+        },
+        {
+          name: "Fadi",
+        },
+        {
+          name: "Andrei",
+        },
+      ],
     };
   }
 
@@ -20,24 +32,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi {this.state.name.firstName} {this.state.name.lastName}, I'm
-            student at {this.state.company}
-          </p>
-          <button
-            onClick={() => {
-              this.setState(() => {
-                return {
-                  name: { firstName: "John", lastName: "Doe" },
-                };
-              });
-            }}
-          >
-            Change Name
-          </button>
-        </header>
+        {this.state.monsters.map((monster) => {
+          return <h1>{monster.name}</h1>;
+        })}
       </div>
     );
   }
