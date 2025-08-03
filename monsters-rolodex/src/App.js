@@ -13,9 +13,11 @@ class App extends Component {
     this.state = {
       monsters: [],
     };
+    console.log(1);
   }
 
   componentDidMount() {
+    console.log(3);
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
@@ -32,6 +34,7 @@ class App extends Component {
 
   // a special method that returns the UI (JSX) to display.
   render() {
+    console.log(2);
     return (
       <div className="App">
         {this.state.monsters.map((monster) => {
