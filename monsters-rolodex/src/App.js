@@ -14,23 +14,16 @@ class App extends Component {
       monsters: [],
       searchField: "",
     };
-    console.log("constructor");
   }
 
   // React lifecycle method that runs once after render to fetch data and update state
   componentDidMount() {
-    console.log("componentDidMount");
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
-        this.setState(
-          () => {
-            return { monsters: users };
-          },
-          () => {
-            console.log(this.state);
-          }
-        )
+        this.setState(() => {
+          return { monsters: users };
+        })
       );
   }
 
@@ -43,8 +36,6 @@ class App extends Component {
 
   // a special method that returns the UI (JSX) to display.
   render() {
-    console.log("render");
-
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
 
@@ -60,14 +51,7 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onSearchChange}
         />
-        <CardList />
-        {/* {filteredMonsters.map((monster) => {
-          return (
-            <div key={monster.id}>
-              <h1>{monster.name}</h1>
-            </div>
-          );
-        })} */}
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
