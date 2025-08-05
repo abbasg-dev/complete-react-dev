@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import logo from "./logo.svg";
+import CardList from "./components/card-list/card-list.component";
 import "./App.css";
 
 // App is the child class (or subclass).
@@ -17,6 +17,7 @@ class App extends Component {
     console.log("constructor");
   }
 
+  // React lifecycle method that runs once after render to fetch data and update state
   componentDidMount() {
     console.log("componentDidMount");
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -59,13 +60,14 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onSearchChange}
         />
-        {filteredMonsters.map((monster) => {
+        <CardList />
+        {/* {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
             </div>
           );
-        })}
+        })} */}
       </div>
     );
   }
