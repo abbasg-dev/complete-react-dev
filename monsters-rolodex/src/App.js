@@ -36,6 +36,7 @@ class App extends Component {
 
   // a special method that returns the UI (JSX) to display.
   render() {
+    // console.log("render from AppJS");
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
 
