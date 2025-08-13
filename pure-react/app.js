@@ -1,18 +1,23 @@
 const Person = (props) => {
   return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.name),
-    React.createElement("p", {}, props.occupation),
+    React.createElement("h1", { key: 1 }, props.name),
+    React.createElement("p", { key: 2 }, props.occupation),
   ]);
 };
 
 const App = () => {
   return React.createElement("div", {}, [
-    React.createElement("h1", { class: "title" }, "React IS rendered"),
+    React.createElement(
+      "h1",
+      { className: "title", key: 3 },
+      "React IS rendered"
+    ),
     React.createElement(
       Person,
       {
         name: "Abbas",
         occupation: "Front-end Engineer",
+        key: 4,
       },
       null
     ),
@@ -21,6 +26,7 @@ const App = () => {
       {
         name: "Abdul",
         occupation: "UI UX Designer",
+        key: 5,
       },
       null
     ),
@@ -29,10 +35,13 @@ const App = () => {
       {
         name: "Ahmad",
         occupation: "Tech Lead",
+        key: 6,
       },
       null
     ),
   ]);
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
+root.render(React.createElement(App));
