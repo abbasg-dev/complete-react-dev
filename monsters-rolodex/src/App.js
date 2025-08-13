@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
@@ -7,12 +7,22 @@ import "./App.css";
 
 const App = () => {
   const [searchField, setSearchField] = useState(""); // [value, setValue]
-  console.log(searchField);
+  const [monsters, setMonsters] = useState([]);
+
+  console.log("render");
+
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((users) => setMonsters(users));
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   };
+
+  const filteredMonsters = monsters.filter((monster) => {
+    return monster.name.toLocaleLowerCase().includes(searchField);
+  });
 
   return (
     <div className="App">
@@ -22,7 +32,7 @@ const App = () => {
         onChangeHandler={onSearchChange}
         placeholder={"search monsters"}
       />
-      {/* <CardList monsters={filteredMonsters} /> */}
+      <CardList monsters={filteredMonsters} />
     </div>
   );
 };
@@ -40,15 +50,15 @@ const App = () => {
 //   }
 
 //   // React lifecycle method that runs once after render to fetch data and update state
-//   componentDidMount() {
-//     fetch("https://jsonplaceholder.typicode.com/users")
-//       .then((response) => response.json())
-//       .then((users) =>
-//         this.setState(() => {
-//           return { monsters: users };
-//         })
-//       );
-//   }
+// componentDidMount() {
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => response.json())
+//     .then((users) =>
+//       this.setState(() => {
+//         return { monsters: users };
+//       })
+//     );
+// }
 
 //   onSearchChange = (event) => {
 //     const searchField = event.target.value.toLocaleLowerCase();
