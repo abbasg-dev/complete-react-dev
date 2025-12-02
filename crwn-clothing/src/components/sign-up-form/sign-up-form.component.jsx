@@ -2,12 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
 import { SignUpContainer } from "./sign-up-form.styles";
-import { onSignUpStart } from "../../store/user/user.saga";
 import { signUpStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
