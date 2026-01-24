@@ -1,9 +1,17 @@
-require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const Stripe = require("stripe");
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event) => {
   try {
-    const { amount } = JSON.parse(event.body);
+    const { amount } = JSON.parse(event.body || "{}");
+
+    if (!amount) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Amount is required" }),
+      };
+    }
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
@@ -13,14 +21,16 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ paymentIntent }),
+      body: JSON.stringify({
+        clientSecret: paymentIntent,
+      }),
     };
   } catch (error) {
-    console.log({ error });
+    console.error("Function error:", error);
 
     return {
-      status: 400,
-      body: JSON.stringify({ error }),
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
