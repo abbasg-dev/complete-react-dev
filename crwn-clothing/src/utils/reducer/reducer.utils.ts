@@ -1,31 +1,34 @@
-import { UnknownAction } from "redux";
+import {
+  UnknownAction, // A general Redux action. It has a type, but we do not know the exact action yet
+} from "redux";
 
-// This creates a new kind of action creator
+// Creates a new action creator type with extra features
 type Matchable<AC extends () => UnknownAction> = AC & {
-  type: ReturnType<AC>["type"]; // remembers the action's name
-  match(action: UnknownAction): action is ReturnType<AC>; //checks if another action has the same name
+  type: ReturnType<AC>["type"]; // Saves the action type name
+  match(action: UnknownAction): action is ReturnType<AC>; // Checks if an action has the same type
 };
 
-// withMatcher can work with an action creator that has no params
+// Allows withMatcher to work with an action creator that has no parameters
 export function withMatcher<AC extends () => UnknownAction & { type: string }>(
   actionCreator: AC,
 ): Matchable<AC>;
 
-// withMatcher can also work with an action creator that takes params
+// Allows withMatcher to work with an action creator that receives parameters
 export function withMatcher<
   AC extends (...args: any[]) => UnknownAction & { type: string },
 >(actionCreator: AC): Matchable<AC>;
 
-// This is the function that actually runs, it receives an action creator
+// The real function that runs and receives an action creator
 export function withMatcher(actionCreator: Function) {
-  const type = actionCreator().type; // This creates an action and saves its type
+  const type = actionCreator().type; // Gets and saves the action type name
+
   return Object.assign(
-    // adds new features to the action creator
-    actionCreator,
+    actionCreator, // Adds new features to the action creator
     {
-      type, // This stores the action's type
+      type, // Stores the action type name
+
       match(action: UnknownAction) {
-        return action.type === type; // This checks whether the action has the same type
+        return action.type === type; // Returns true if both action types are the same
       },
     },
   );
