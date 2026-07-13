@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-logger": "^3.0.13",
     "ajv": "^8.16.0",
     "ajv-keywords": "^5.1.0",
     "schema-utils": "^4.2.0"
