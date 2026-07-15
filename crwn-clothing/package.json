@@ -13,6 +13,7 @@
     "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "babel-plugin-macros": "^3.1.0",
     "dotenv": "^17.2.3",
     "firebase": "^12.1.0",
     "react": "^19.1.1",
@@ -29,6 +30,7 @@
     "sass": "^1.90.0",
     "stripe": "^20.2.0",
     "styled-components": "^6.1.19",
+    "typed-redux-saga": "^1.5.0",
     "typescript": "^6.0.3",
     "web-vitals": "^2.1.4"
   },
