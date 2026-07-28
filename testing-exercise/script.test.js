@@ -22,4 +22,8 @@ describe("googleSearch", () => {
   it("does not return more than 3 matches", () => {
     expect(googleSearch(".com", dbMock).length).toEqual(3);
   });
+
+  it("is running", () => {
+    expect(googleSearch("dog", dbMock)).toExist;
+  });
 });
