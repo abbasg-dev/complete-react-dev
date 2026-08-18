@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import CardList from './CardList';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
-import ErrorBoundry from './ErrorBoundry';
-import Header from './Header';
+import CardList from "./CardList";
+import SearchBox from "./SearchBox";
+import Scroll from "./Scroll";
+import ErrorBoundry from "./ErrorBoundry";
+import Header from "./Header";
 
 export class MainPage extends Component {
   componentDidMount() {
@@ -12,29 +12,32 @@ export class MainPage extends Component {
   }
 
   filterRobots = () => {
-    const { robots, searchField } = this.props;
-    return robots.filter(robot => {
-      return robot.name.toLowerCase().includes(searchField.toLowerCase());
-    })
-  }
+    return this.props.robots.filter((robot) => {
+      return robot.name
+        .toLowerCase()
+        .includes(this.props.searchField.toLowerCase());
+    });
+  };
 
   render() {
-    const { onSearchChange, isPending } = this.props;
+    const { robots, onSearchChange, isPending } = this.props;
 
     return (
-      <div className='tc'>
+      <div className="tc">
         <Header />
-        <SearchBox searchChange={onSearchChange}/>
+        <SearchBox searchChange={onSearchChange} />
         <Scroll>
-          { isPending ? <h1>Loading</h1> :
+          {isPending ? (
+            <h1>Loading</h1>
+          ) : (
             <ErrorBoundry>
-              <CardList robots={this.filterRobots()} />
+              <CardList robots={this.filterRobots(robots)} />
             </ErrorBoundry>
-          }
+          )}
         </Scroll>
       </div>
     );
   }
 }
 
-export default MainPage
+export default MainPage;
