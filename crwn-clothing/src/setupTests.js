@@ -6,3 +6,8 @@ import "@testing-library/jest-dom";
 
 jest.mock("./assets/crown.svg", () => require("./utils/test/svgMock"));
 jest.mock("./assets/shopping-bag.svg", () => require("./utils/test/svgMock"));
+
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: jest.fn(),
+}));
