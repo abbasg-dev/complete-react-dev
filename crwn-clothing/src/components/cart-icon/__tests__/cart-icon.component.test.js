@@ -4,10 +4,6 @@ import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../../utils/test/test.utils";
 import CartIcon from "../cart-icon.component";
 
-jest.mock("../../../assets/shopping-bag.svg", () => ({
-  ReactComponent: (props) => <svg {...props} />,
-}));
-
 describe("Cart Icon tests", () => {
   test("Uses preloaded state to render", () => {
     const initialCartItems = [

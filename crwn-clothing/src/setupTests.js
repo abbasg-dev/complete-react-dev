@@ -2,4 +2,7 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
+
+jest.mock("./assets/crown.svg", () => require("./utils/test/svgMock"));
+jest.mock("./assets/shopping-bag.svg", () => require("./utils/test/svgMock"));
