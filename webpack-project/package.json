@@ -1,0 +1,23 @@
+{
+  "name": "webpack-project",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "Abbas Ghaith <abbasghayth5@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
+    "babel-loader": "^10.1.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "webpack": "^5.110.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "description": ""
+}
